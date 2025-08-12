@@ -22,7 +22,7 @@ public struct ISO8601DateMacro: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        guard let arg = node.arguments.first?.expression.as(StringLiteralExprSyntax.self),
+        guard let arg = node.argumentList.first?.expression.as(StringLiteralExprSyntax.self),
               let isoString = arg.segments.first?.description.trimmingCharacters(in: .whitespacesAndNewlines)
         else {
             throw MacroError.message("Expected a string literal")
